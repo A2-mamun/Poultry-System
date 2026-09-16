@@ -3,60 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poultry Coop Environment</title>
+  <title>Poultry Coop Dashboard</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Poultry Coop Environment</h1>
-      <span id="status-badge" class="badge offline">OFFLINE</span>
-    </header>
-
+  <div class="dashboard">
+    <h1>Poultry Coop Monitoring</h1>
+    
     <div class="grid">
-      <!-- Temperature Card -->
       <div class="card">
-        <div class="icon">🌡️</div>
         <h3>Temperature</h3>
-        <div class="value" id="val-temp">--</div>
-        <div class="unit">°C</div>
+        <p class="value" id="temp">-- °C</p>
       </div>
-
-      <!-- Humidity Card -->
       <div class="card">
-        <div class="icon">💧</div>
         <h3>Humidity</h3>
-        <div class="value" id="val-hum">--</div>
-        <div class="unit">%</div>
+        <p class="value" id="humidity">-- %</p>
       </div>
-
-      <!-- Gas Level Card -->
       <div class="card">
-        <div class="icon">☣️</div>
         <h3>Gas Level</h3>
-        <div class="value" id="val-gas">--</div>
-        <div class="unit">PPM</div>
+        <p class="value" id="gas">-- PPM</p>
       </div>
-
-      <!-- Feed Distance Card -->
       <div class="card">
-        <div class="icon">🌾</div>
-        <h3>Feed Distance</h3>
-        <div class="value" id="val-feed">--</div>
-        <div class="unit">cm</div>
+        <h3>Feed Level</h3>
+        <p class="value" id="feed">-- %</p>
       </div>
-
-      <!-- Water Distance Card -->
       <div class="card">
-        <div class="icon">🚰</div>
-        <h3>Water Distance</h3>
-        <div class="value" id="val-water">--</div>
-        <div class="unit">cm</div>
+        <h3>Water Level</h3>
+        <p class="value" id="water">-- %</p>
+      </div>
+      <div class="card">
+        <h3>Exhaust Fan Status</h3>
+        <p class="value" id="fan-status">OFF</p>
       </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
