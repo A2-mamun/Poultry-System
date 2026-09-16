@@ -39,7 +39,7 @@ function setCardStatus(valueId, numValue, safeLimit, warningLimit, isInverse = f
     if (numValue === null || isNaN(numValue)) return;
 
     if (!isInverse) {
-        // High Value = High Danger
+        // Higher value = Higher danger (Temp, Humidity, Gas)
         if (numValue <= safeLimit) {
             card.classList.add("status-safe");      // Green
         } else if (numValue <= warningLimit) {
@@ -48,13 +48,13 @@ function setCardStatus(valueId, numValue, safeLimit, warningLimit, isInverse = f
             card.classList.add("status-danger");    // Red
         }
     } else {
-        // High Distance = Low Feed/Water Level = High Danger
-        if (numValue <= safeLimit) {
-            card.classList.add("status-safe");      // Green (Full)
-        } else if (numValue <= warningLimit) {
-            card.classList.add("status-warning");   // Orange (Low)
+        // Lower percentage = Higher danger (Feed %, Water %)
+        if (numValue >= safeLimit) {
+            card.classList.add("status-safe");      // Green (>= 70%)
+        } else if (numValue >= warningLimit) {
+            card.classList.add("status-warning");   // Orange (30% - 69%)
         } else {
-            card.classList.add("status-danger");    // Red (Empty)
+            card.classList.add("status-danger");    // Red (< 30%)
         }
     }
 }
@@ -96,15 +96,15 @@ async function updateDashboard() {
         }
         setCardStatus("val-gas", gasVal, 400, 600);
 
-        // Feed Distance (Green <= 15cm | Orange <= 35cm | Red > 35cm)
+        // Feed Level % (Green >= 70% | Orange >= 30% | Red < 30%)
         const feedVal = (feed && !isNaN(feed)) ? parseInt(feed) : null;
         document.getElementById("val-feed").innerText = feedVal !== null ? feedVal : "--";
-        setCardStatus("val-feed", feedVal, 15, 35, true);
+        setCardStatus("val-feed", feedVal, 70, 30, true);
 
-        // Water Distance (Green <= 10cm | Orange <= 25cm | Red > 25cm)
+        // Water Level % (Green >= 70% | Orange >= 30% | Red < 30%)
         const waterVal = (water && !isNaN(water)) ? parseInt(water) : null;
         document.getElementById("val-water").innerText = waterVal !== null ? waterVal : "--";
-        setCardStatus("val-water", waterVal, 10, 25, true);
+        setCardStatus("val-water", waterVal, 70, 30, true);
 
     } else {
         statusBadge.textContent = "OFFLINE";
